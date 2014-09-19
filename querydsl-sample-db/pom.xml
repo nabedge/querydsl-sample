@@ -13,8 +13,11 @@
 		<java.version>1.8</java.version>
 		<encoding>UTF-8</encoding>
 		<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
-		<querydsl.version>3.3.2</querydsl.version>
-		<h2database.version>1.3.168</h2database.version>
+		<querydsl.version>3.4.3</querydsl.version>
+		<h2database.version>1.4.181</h2database.version>
+		<jdbcUrl>jdbc:h2:file:${basedir}/target/tmpdb</jdbcUrl>
+		<jdbcUser>sa</jdbcUser>
+        <jdbcPassword></jdbcPassword>
 	</properties>
 
 	<dependencies>
@@ -27,12 +30,6 @@
 			<groupId>com.mysema.querydsl</groupId>
 			<artifactId>querydsl-sql-codegen</artifactId>
 			<version>${querydsl.version}</version>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.1</version>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
@@ -68,9 +65,9 @@
 				</dependencies>
 				<configuration>
 					<driver>org.h2.Driver</driver>
-                    <url>jdbc:h2:file:${basedir}/target/tmpdb</url>
-					<username>sa</username>
-					<password> </password>
+                    <url>${jdbcUrl}</url>
+					<username>${jdbcUser}</username>
+					<password>${jdbcPassword}</password>
 					<encoding>UTF-8</encoding>
 					<autocommit>true</autocommit>
 				</configuration>
@@ -84,7 +81,7 @@
 						<configuration>
 							<orderFile>ascending</orderFile>
 							<fileset>
-								<basedir>${basedir}/src/main/sql/</basedir>
+								<basedir>${basedir}/src/main/resources/sql/</basedir>
 								<includes>
 									<include>00_init.sql</include>
 								</includes>
@@ -106,9 +103,9 @@
 				</executions>
 				<configuration>
 					<jdbcDriver>org.h2.Driver</jdbcDriver>
-                    <jdbcUrl>jdbc:h2:file:${basedir}/target/tmpdb</jdbcUrl>
-					<jdbcUser>sa</jdbcUser>
-					<!-- <jdbcPassword> </jdbcPassword> -->
+                    <jdbcUrl>${jdbcUrl}</jdbcUrl>
+					<jdbcUser>${jdbcUser}</jdbcUser>
+					<jdbcPassword>${jdbcPassword}</jdbcPassword>
 					<!-- <schemaPattern> </schemaPattern> -->
 					<packageName>com.example.db.querydsl.gen</packageName>
 					<beanInterfaces>

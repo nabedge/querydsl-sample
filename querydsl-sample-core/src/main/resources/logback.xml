@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE logback>
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder>
+            <pattern>[%thread] %level [%logger{36}] %msg%xEx%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.hibernate.validator" level="WARN"/>
+
+    <!-- log4jdbc -->
+    <logger name="jdbc" level="ERROR" />
+    <logger name="jdbc.sqlonly" level="INFO" />
+
+    <!-- application -->
+    <logger name="com.example" level="DEBUG" />
+
+    <root>
+        <level value="INFO" />
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

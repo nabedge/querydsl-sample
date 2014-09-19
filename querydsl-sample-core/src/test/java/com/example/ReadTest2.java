@@ -50,8 +50,10 @@ public class ReadTest2 {
         final QBook qBook = QBook.book;
         SQLQuery query = queryDslJdbcTemplate.newSqlQuery();
         query.from(qBook);
-        // 何か特殊なdialect（方言）を使いたい場合。ここでは仮にbetweenが方言だとして
-        // The case that you need special dialect. (supposing that "BETWEEN" is a dialect.)
+        // 何か特殊なdialect（方言）を使いたい場合。
+        // ここでは仮にbetweenが方言だとして
+        // The case that you need special dialect. 
+        // (supposing that "BETWEEN" is a dialect.)
         String template = "publish_date between {0} and {1}";
         query.where(Expressions.booleanTemplate(template, "1980-01-01",
                 "2000-12-31"));

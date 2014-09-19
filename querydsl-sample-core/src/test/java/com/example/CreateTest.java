@@ -30,7 +30,7 @@ public class CreateTest {
 
     // =======================================================
     @Test
-    @Transactional
+    @Transactional()
     public void insert1() {
 
         Book book = new Book();

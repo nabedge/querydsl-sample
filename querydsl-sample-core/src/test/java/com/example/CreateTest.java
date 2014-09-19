@@ -50,8 +50,6 @@ public class CreateTest {
                         return insert.populate(book).execute();
                     }
                 });
-
-        Assert.assertThat(result, is(1L));
     }
 
     // =======================================================
@@ -70,8 +68,6 @@ public class CreateTest {
 
         long result = queryDslJdbcTemplate.insert(qBook, //
                 insert -> insert.populate(book).execute());
-
-        Assert.assertThat(result, is(1L));
     }
 
     // =======================================================
@@ -95,7 +91,6 @@ public class CreateTest {
                         return insert.execute();
                     }
                 });
-        Assert.assertThat(result, is(1L));
     }
 
     // =======================================================
@@ -115,6 +110,5 @@ public class CreateTest {
             insert.set(qBook.publishDate, publishDate);
             return insert.execute();
         });
-        Assert.assertThat(result, is(1L));
     }
 }

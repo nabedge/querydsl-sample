@@ -2,6 +2,8 @@ package com.example;
 
 import static org.hamcrest.CoreMatchers.is;
 
+import java.util.List;
+
 import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,8 +34,20 @@ public class ReadTest {
     @Test
     @Transactional
     public void select1() {
-        SQLQuery query = queryDslJdbcTemplate.newSqlQuery();
         final QBook qBook = QBook.book;
-
+        SQLQuery query = queryDslJdbcTemplate.newSqlQuery();
+        query.from(qBook);
+        List<Book> list = queryDslJdbcTemplate.query(query, qBook);
     }
+
+    @Test
+    @Transactional
+    public void select2() {
+        final QBook qBook = QBook.book;
+        SQLQuery query = queryDslJdbcTemplate.newSqlQuery();
+        query.from(qBook).orderBy(qBook.isbn.asc()).offset(0).limit(3);
+        List<Book> list = queryDslJdbcTemplate.query(query, qBook);
+    }
+
+
 }

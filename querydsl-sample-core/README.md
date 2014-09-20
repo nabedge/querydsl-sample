@@ -1,0 +1,1 @@
+do "mvn clean install"

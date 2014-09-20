@@ -1,7 +1,6 @@
 Sample code for 8th #渋谷java talk by watanabe(nabedge)
 ===============
-
-Shibuya Tokyo 2014-09-20 .
+Shibuya, Tokyo.  2014-09-20
 
 !! You need JDK8 !!
 

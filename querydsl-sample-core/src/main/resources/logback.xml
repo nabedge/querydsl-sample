@@ -14,9 +14,9 @@
     <logger name="org.hibernate.validator" level="WARN"/>
 
     <!-- log4jdbc -->
-    <logger name="jdbc" level="INFO" />
+    <logger name="jdbc" level="ERROR" />
     <logger name="jdbc.sqlonly" level="INFO" />
-    <logger name="jdbc.connection" level="INFO" />
+<!--     <logger name="jdbc.connection" level="INFO" /> -->
 
     <!-- application -->
     <logger name="com.example" level="DEBUG" />

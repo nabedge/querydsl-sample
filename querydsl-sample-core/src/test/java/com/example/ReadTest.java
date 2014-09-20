@@ -56,7 +56,11 @@ public class ReadTest {
     public void select2() {
         final QBook qBook = QBook.book;
         SQLQuery query = queryDslJdbcTemplate.newSqlQuery();
-        query.from(qBook).orderBy(qBook.isbn.asc()).offset(0).limit(3);
+        query
+            .from(qBook)
+            .orderBy(qBook.isbn.asc())
+            .offset(0)
+            .limit(3);
         List<Book> list = queryDslJdbcTemplate.query(query, qBook);
     }
 
@@ -115,7 +119,7 @@ public class ReadTest {
         List<Book> list = queryDslJdbcTemplate.query(query, qBook);
         log.debug(list.toString());
     }
-    
+
     // =======================================================
     @Test
     @Transactional
@@ -126,7 +130,7 @@ public class ReadTest {
                 new DateTime("2000-12-31").getMillis());
 
         boolean someParam = true;
-        
+
         query.from(qBook);
         query.where(qBook.authorId.eq(2));
         if (someParam) {
@@ -144,7 +148,7 @@ public class ReadTest {
         SQLQuery query = queryDslJdbcTemplate.newSqlQuery();
         java.sql.Date dt = new java.sql.Date(
                 new DateTime("2000-12-31").getMillis());
-        
+
         boolean someParam = true;
 
         BooleanBuilder bb = new BooleanBuilder();
@@ -166,11 +170,9 @@ public class ReadTest {
         SQLQuery query = queryDslJdbcTemplate.newSqlQuery();
         query.from(qBook);
         List<Book> list = queryDslJdbcTemplate.query(query, new BookProjection(
-                qBook)
-        );
+                qBook));
     }
-    
-    // =======================================================
+
     public class BookProjection extends MappingProjection<Book> {
 
         private static final long serialVersionUID = 1L;
@@ -188,5 +190,5 @@ public class ReadTest {
             return book;
         }
     }
-    
+
 }

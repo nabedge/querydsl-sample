@@ -21,18 +21,13 @@ class RootConfig {
             .getLogger(RootConfig.class);
 
     @Bean
-    public DataSource realDataSource() {
-        logger.debug("creating datasource...");
+    public DataSource dataSource() {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         builder.setType(EmbeddedDatabaseType.H2);
         builder.addScript("classpath:sql/00_init.sql");
         EmbeddedDatabase ds = builder.build();
-        return ds;
-    }
-
-    @Bean
-    public DataSource dataSource() {
-        return new Log4jdbcProxyDataSource(realDataSource());
+        Log4jdbcProxyDataSource proxyDs = new Log4jdbcProxyDataSource(ds);
+        return proxyDs;
     }
 
 }

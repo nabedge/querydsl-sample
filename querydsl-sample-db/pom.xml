@@ -96,6 +96,7 @@
 				<version>${querydsl.version}</version>
 				<executions>
 					<execution>
+					    <phase>process-resources</phase>
 						<goals>
 							<goal>export</goal>
 						</goals>

@@ -19,8 +19,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static org.junit.Assert.assertNull;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { Config.class })
+@Transactional
 public class ReadTest {
 
     private final Logger log = LoggerFactory.getLogger(ReadTest.class);
@@ -30,7 +33,6 @@ public class ReadTest {
 
     // =======================================================
     @Test
-    @Transactional
     public void select21() {
         final QBook qBook = QBook.book;
         SQLQuery<Book> query = sqlQueryFactory.select(qBook);
@@ -44,7 +46,6 @@ public class ReadTest {
 
     // =======================================================
     @Test
-    @Transactional
     public void select22() {
         final QBook qBook = QBook.book;
         final QAuthor qAuthor = QAuthor.author;
@@ -73,7 +74,6 @@ public class ReadTest {
 
     // =======================================================
     @Test
-    @Transactional
     public void select23() {
         final QBook qBook = QBook.book;
         final QAuthor qAuthor = QAuthor.author;
@@ -100,5 +100,16 @@ public class ReadTest {
             log.debug("publishDate:{}", e.getPublishDate());
         });
     }
+
+    @Test
+    public void select24() {
+        final QBook qBook = QBook.book;
+        SQLQuery<Book> query = sqlQueryFactory.select(qBook);
+        query.from(qBook);
+        query.where(qBook.isbn.eq("foobar"));
+        Book book = query.fetchOne();
+        assertNull(book);
+    }
+
 
 }

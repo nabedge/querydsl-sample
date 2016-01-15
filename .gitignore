@@ -4,3 +4,12 @@ pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
 release.properties
+
+# eclipse
+.settings/
+.project
+.classpath
+
+# intellij
+.idea/
+*.iml

@@ -13,7 +13,7 @@
 		<java.version>1.8</java.version>
 		<encoding>UTF-8</encoding>
 		<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
-		<querydsl.version>3.4.3</querydsl.version>
+		<querydsl.version>4.0.7</querydsl.version>
 		<h2database.version>1.4.181</h2database.version>
 		<jdbcUrl>jdbc:h2:file:${basedir}/target/tmpdb</jdbcUrl>
 		<jdbcUser>sa</jdbcUser>
@@ -22,12 +22,12 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.mysema.querydsl</groupId>
+			<groupId>com.querydsl</groupId>
 			<artifactId>querydsl-sql</artifactId>
 			<version>${querydsl.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.mysema.querydsl</groupId>
+			<groupId>com.querydsl</groupId>
 			<artifactId>querydsl-sql-codegen</artifactId>
 			<version>${querydsl.version}</version>
 			<optional>true</optional>
@@ -91,7 +91,7 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>com.mysema.querydsl</groupId>
+				<groupId>com.querydsl</groupId>
 				<artifactId>querydsl-maven-plugin</artifactId>
 				<version>${querydsl.version}</version>
 				<executions>

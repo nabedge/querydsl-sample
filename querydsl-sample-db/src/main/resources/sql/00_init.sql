@@ -11,7 +11,7 @@ create table book (
     ,foreign key (author_id) references author (id)
 );
 
-insert into author (id,name)　values (1, 'Arthur Conan Doyle');
+insert into author (id,name) values (1, 'Arthur Conan Doyle');
 insert into author (id,name) values (2, 'Haruki Murakami');
 insert into author (id,name) values (3, '江戸川乱歩');
 insert into author (id,name) values (4, '諫山創');

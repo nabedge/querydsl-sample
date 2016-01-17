@@ -1,11 +1,14 @@
 package com.example;
 
+import com.example.db.querydsl.gen.Author;
 import com.example.db.querydsl.gen.Book;
 import com.example.db.querydsl.gen.QAuthor;
 import com.example.db.querydsl.gen.QBook;
+import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.sql.SQLBindings;
+import com.querydsl.sql.SQLExpressions;
 import com.querydsl.sql.SQLQuery;
 import com.querydsl.sql.SQLQueryFactory;
 import org.junit.Test;
@@ -42,6 +45,7 @@ public class ReadTest {
         String template = "publish_date between {0} and {1}";
         query.where(Expressions.booleanTemplate(template, "1980-01-01", "2000-12-31"));
         List<Book> list = query.fetch();
+        log.info(list.toString());
     }
 
     // =======================================================
@@ -111,5 +115,15 @@ public class ReadTest {
         assertNull(book);
     }
 
+    @Test
+    public void subQuerySample() {
+        final QAuthor qAuthor = QAuthor.author;
+        final QBook qBook = QBook.book;
+        List<Author> list = sqlQueryFactory.select(qAuthor)
+                .from(qAuthor)
+                .where(SQLExpressions.select(qBook.count()).from(qBook).where(qBook.authorId.eq(qAuthor.id)).gt(0L))
+                .fetch();
+        log.info(list.toString());
+    }
 
 }
